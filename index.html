@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Изучение JavaScript</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+  <p id="name">Рады вас видеть, <span id="userName"></span>!</p>
+  <script >
+      let name = prompt("Как вас зовут?");
+      document.getElementById("userName").innerHTML = name;
+  </script>
+  <div id="wrapper">
+		<nav>
+			<ul class="top-menu">
+				<li><a href="#Square">Площадь треугольника</a></li>
+				<li><a href="#String">Строки</a></li>
+        <li><a href="#Array">Массив</a></li>
+        <li><a href="#Timer">Таймер</a></li>
+        <li><a href="#Test">Тест</a></li>
+        <li><a href="#Button">Кнопка</a></li>
+			</ul>
+		</nav>
+	<div id="heading">
+		<h2>Изучение JavaScript</h2>
+	</div>
+
+<p><a name="Square"></a></p>
+<script>
+  function ploshad() {
+  let a = parseInt(document.f1.a.value);
+  let b = parseInt(document.f1.b.value);
+  let pl = 0.5*a*b; 
+  alert(pl);
+}
+</script>
+
+<h6>Вычислить площадь треугольника</h6>
+  <p>Введите основание и высоту треуголька, площадь которого нужно вычислить</p>
+  <form name="f1">
+  <input type="text" name="a" id="a">
+  <input type="text" name="b" id="b">
+  <br>
+  <button onClick="ploshad();" >Определить </button>
+  </form>
+
+<p><a name="String"></a></p>
+  <script>
+    function string(){
+    let string1 = document.getElementById("string1").value;
+    let string2 = document.getElementById("string2").value;
+    if(string1.length == string2.length){
+      alert ("true");
+    }
+    else{
+      alert("false")
+    }
+  }
+  </script>
+
+<h6>Сравнение строк</h6>
+  <p>Введите две строки</p>
+  <input type="text" id="string1">
+  <input type="text" id="string2">
+  <br><button  onclick="string()">Сравнить строки</button>
+  <p><a name="Array"></a></p>
+
+<h6>Работа с массивом</h6>
+  <script>
+  function Array(){
+    let number = document.getElementById("arr").value.split(",").map(s=>parseInt(s));
+    let max = Math.max.apply(null, number);
+    let min = Math.min.apply(null, number);
+    alert( "Максимальное значение: " + max + " , минимальное значение: " + min );
+  }
+  </script>
+
+  <p>Введите массив из 5 элементов через запятую и без пробелов</p>
+  <input type="text" id="arr">
+  <br>
+  <button onclick ="Array()" >Вывести</button>
+
+<p><a name="Timer"></a></p>
+<h6>Таймер с использованием JS</h6>
+ <p>Введите время в минутах</p>
+  <input type="text" name="time" id="time">
+  <button id="button"> Запустить</button>
+  <button id="button1"> Остановить</button>
+  <div id="timer"></div>
+  <script>
+    let timerInput = document.getElementById("time");
+    let buttonRun = document.getElementById("button");     
+    let timerShow = document.getElementById("timer");   
+    let buttonStop = document.getElementById("button1");
+    const t = timer()
+
+    buttonRun.addEventListener('click', function() {
+      timeMinut = parseInt(timerInput.value) * 60
+      t.start()
+    })
+
+    buttonStop.addEventListener('click', function(){
+      t.stop()
+    })
+
+    function timer() {
+      let timerId;
+      let i = 0;
+      return {
+        start: function() {
+          if (!timerId) {
+            timerId = setInterval(function() {
+              seconds = timeMinut%60
+              minutes = timeMinut/60%60
+              hour = timeMinut/60/60%60
+              if (timeMinut <= 0) {
+                clearInterval(timerId);
+                alert("Время вышло!");
+              } else {
+                let strTimer = `${Math.trunc(hour)}:${Math.trunc(minutes)}:${seconds}`;
+                timerShow.innerHTML = strTimer;
+              }
+              --timeMinut;
+              }, 1000)
+            console.log('таймер запущен');
+          }
+        },
+
+        stop: function() {
+          clearInterval(timerId);
+          timerId = undefined;
+          console.log('таймер остановлен');
+        },
+      };
+    }
+  </script>
+
+<p><a name="Test"></a></p>
+<h6>Тест</h6>
+  <p>Пройдите тест из 10 вопросов по JavaScript для закрепления материала</p>
+  <form>
+  <div id="q1">
+    <ul>
+    <h5>1. После какого HTML тега нужно вставить JavaScript?</h5>
+    <li><input type="radio" name="que1" value="0"> <label for="radioButton1">javascript</label> </li>    
+    <li><input type="radio" name="que1" value="1"> <label for="radioButton2">script</label> </li>
+    <li><input type="radio" name="que1" value="0"> <label for="radioButton3">js</label> </li>
+    <li><input type="radio" name="que1" value="0"> <label for="radioButton4">scripting</label> </li>
+    </ul>
+  </div>
+  <div id="q1">
+    <ul>
+    <h5>2. Как правильно вставить внешний скрипт?</h5>
+    <li><input type="radio" name="que2" value="0"> <label for="radioButton1">script name="sample1.js"</script></label> </li>    
+    <li><input type="radio" name="que2" value="1"> <label for="radioButton2">script src="sample1.js"</label> </li>
+    <li><input type="radio" name="que2" value="0"> <label for="radioButton3">#include "sample1.js"</label> </li>
+    <li><input type="radio" name="que2" value="0"> <label for="radioButton4">script href="sample1.js"</label> </li>
+    </ul>
+  </div>
+  <div id="q1">
+    <ul>
+    <h5>3. Как можно вывести сообщение "Hello World!" с помощью JavaScript?</h5>
+    <li><input type="radio" name="que3" value="0"> <label for="radioButton1">msgBox("Hello World");</script></label> </li>    
+    <li><input type="radio" name="que3" value="0"> <label for="radioButton2">alertBox("Hello World");</label> </li>
+    <li><input type="radio" name="que3" value="0"> <label for="radioButton3">msg("Hello World");</label> </li>
+    <li><input type="radio" name="que3" value="1"> <label for="radioButton4">alert("Hello World");</label> </li>
+    </ul>
+  </div>
+  <div id="q1">
+    <ul>
+    <h5>4. Как объявить функцию в JavaScript?</h5>
+    <li><input type="radio" name="que4" value="0"> <label for="radioButton1">function MyFunction()</script></label> </li>    
+    <li><input type="radio" name="que4" value="0"> <label for="radioButton2">function:MyFunction()</label> </li>
+    <li><input type="radio" name="que4" value="0"> <label for="radioButton3">function = New MyFunction()</label> </li>
+    <li><input type="radio" name="que4" value="1"> <label for="radioButton4">function = MyFunction()</label> </li>
+    </ul>
+  </div>
+  <div id="q1">
+    <ul>
+    <h5>5. Какой правильный способ использование IF оператора в JavaScript?</h5>
+    <li><input type="radio" name="que5" value="1"> <label for="radioButton1">if (i == 2)</script></label> </li>    
+    <li><input type="radio" name="que5" value="0"> <label for="radioButton2">if i = 2</label> </li>
+    <li><input type="radio" name="que5" value="0"> <label for="radioButton3">if i == 2 then</label> </li>
+    <li><input type="radio" name="que5" value="0"> <label for="radioButton4">if i = 2 then</label> </li>
+    </ul>
+  </div>
+  <div id="q1">
+    <ul>
+    <h5>6. Как создать новый массив в JavaScript?</h5>
+    <li><input type="radio" name="que6" value="1"> <label for="radioButton1">var colors = ["yellow", "purple", "blue"]</script></label> </li>    
+    <li><input type="radio" name="que6" value="0"> <label for="radioButton2">var colors = 1 = ("yellow"), 2 = ("purple"), 3 = ("blue")</label> </li>
+    <li><input type="radio" name="que6" value="0"> <label for="radioButton3">var colors = "yellow", "purple", "blue"</label> </li>
+    <li><input type="radio" name="que6" value="0"> <label for="radioButton4">var colors = (1:"yellow", 2:"purple", 3:"blue")</label> </li>
+    </ul>
+  </div>
+  <div id="q1">
+    <ul>
+    <h5>7. Как округляется число 3.14 до ближайшего целого числа?</h5>
+    <li><input type="radio" name="que7" value="0"> <label for="radioButton1">round(3.14)</script></label> </li>    
+    <li><input type="radio" name="que7" value="1"> <label for="radioButton2">Math.round(3.14)</label> </li>
+    <li><input type="radio" name="que7" value="0"> <label for="radioButton3">rnd(3.14)</label> </li>
+    <li><input type="radio" name="que7" value="0"> <label for="radioButton4">Math.rnd(3.14)</label> </li>
+    </ul>
+  </div>
+  <div id="q1">
+    <ul>
+    <h5>8. Как найти наибольшее из двух чисел?</h5>
+    <li><input type="radio" name="que8" value="0"> <label for="radioButton1">ceil(x, y)</script></label> </li>    
+    <li><input type="radio" name="que8" value="0"> <label for="radioButton2">Math.max(x, y)</label> </li>
+    <li><input type="radio" name="que8" value="1"> <label for="radioButton3">Math.ceil(x, y)</label> </li>
+    <li><input type="radio" name="que8" value="0"> <label for="radioButton4">top(x, y)</label> </li>
+    </ul>
+  </div>
+  <div id="q1">
+    <ul>
+    <h5>9. По какому из превденнъх ниже способах откривается окно с JavaScript?</h5>
+    <li><input type="radio" name="que9" value="1"> <label for="radioButton1">myWindow = window.open("http://www.w3schools.com");</script></label> </li>    
+    <li><input type="radio" name="que9" value="0"> <label for="radioButton2">myWindow = window.new("http://www.w3schools.com");</label> </li>
+    <li><input type="radio" name="que9" value="0"> <label for="radioButton3">myWindow = New window("http://www.w3schools.com");</label> </li>
+    </ul>
+  </div>
+  <div id="q1">
+    <ul>
+    <h5>10. Как через JavaScript можем получить имя клиентского браузера?</h5>
+    <li><input type="radio" name="que10" value="1"> <label for="radioButton1">navigator.appName</script></label> </li>    
+    <li><input type="radio" name="que10" value="0"> <label for="radioButton2">client.navName</label> </li>
+    <li><input type="radio" name="que10" value="0"> <label for="radioButton3">browser.name</label> </li>
+    </ul>
+  </div>
+
+  <p>
+    <input type="button" id="calc" value="Подсчитать результаты">
+    <input type="reset" value="Сброс">
+  </p>
+
+  <p>Набрано баллов всего:</p>
+    <input type="text" name="result" readonly>
+    
+    <script>
+    calc.onclick = function(){
+    let myform = this.form;
+    myform.result.value = +myform.que1.value + +myform.que2.value + +myform.que3.value + +myform.que4.value + +myform.que5.value + +myform.que6.value + +myform.que7.value + +myform.que8.value + +myform.que9.value + +myform.que10.value;
+    }
+    </script>
+</form>
+
+<p><a name="Button"></a></p>
+<h6>Заставка</h6>
+<p>Нажмите на кнопку, чтобы увидеть заставку</p>
+<div id="but"><button > <span> Открыть </span> </button></div>
+</body>
+</html>
